@@ -1,9 +1,14 @@
-// import {Div, Heading, Paragraph} from "../views/atoms/index.js"
-import { Header} from "../views/molecules/index.js"
+import {Div, Heading, Paragraph} from "../views/atoms/index.js"
+import { Header, Main, Footer} from "../views/molecules/index.js"
 
 export const HomePage = () => {
-    const html = Header ()
-    return html
+    const div = Div()
+    const header = Header ()
+    const main = Main()
+    const footer = Footer()
+    div.append(header,main,footer )
+
+    return div
 
     // const div = Div('producktbox')
     // const heading = Heading(3)
