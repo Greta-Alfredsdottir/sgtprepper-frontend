@@ -8,13 +8,21 @@ export const HeaderView = () => {
     return element
 }
 
-export const NavBarView = () =>{
+export const NavBarView = arrNavItems => {
     const element = document.createElement('nav')
-    const ul = Ul()
-    const li = Li()
-    const item1 = Link('/produkter', 'produkter')
-    li.append(item1)
-    ul.append(li)
+    const ul = Ul('flex')
+
+    arrNavItems.forEach(item => {
+        const { href, title } = item
+        
+        const li = Li()
+        const item1 = Link(href, title)
+        li.append(item1)
+        ul.append(li)
+
+    })
+
+
     element.append(ul)
     return element
 }

@@ -4,10 +4,20 @@ import { FooterView, HeaderView, MainView, NavBarView } from "../views/molecules
 
 export const Layout =(title, content) => {
     document.title = title
+
+    const arrNavItems = [
+        { href: '/index.htm#/produkter', title: 'Produkter'},
+        { href: '/index.htm#/cart', title: 'Indkøbskurv'},
+
+
+    ]
+
+
+    
  const element = Fragment()
  element.append(
     HeaderView(),
-    NavBarView(),
+    NavBarView(arrNavItems),
     MainView(title, content),
     FooterView()
  )
