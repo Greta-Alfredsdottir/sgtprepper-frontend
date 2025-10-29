@@ -4,6 +4,7 @@ import { FooterView, HeaderView, MainView, NavBarView } from "../views/molecules
 import { getCategoryList } from "./categoryController.js"
 
 export const Layout = async (title, content) => {
+       
     document.title = title
     const arrNavItems = await getCategoryList()
     

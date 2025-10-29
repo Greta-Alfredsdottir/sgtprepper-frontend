@@ -5,7 +5,7 @@ export const HeaderView = () => {
     // Her bruger vi Tailwind for at style
     element.className = 'bg-slate-500 shadow-md border rounded-lg p-4 text-white-' 
     const h1 = Heading('sgt. Prepper')
-    element.append(h1)
+    element.append(h1) 
     return element
 }
 
@@ -28,6 +28,8 @@ export const NavBarView = arrNavItems => {
 }
 
 export const MainView = (title, content) => {
+    
+    
     const element = document.createElement('main')
     const h1 = Heading(title)
     element.className = 'min-h-[400px]'
