@@ -36,7 +36,7 @@ export const Li = (className = '') => {
 export const Link = (to, text, className = '') => {
     const element = document.createElement('a')
     element.className= className
-    element.HREF = to
+    element.href = to
     element.innerText = text
     return element
 }
