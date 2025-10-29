@@ -1,10 +1,10 @@
 import { Paragraph } from "../views/atoms/index.js"
 import { Layout } from "./layoutController.js"
 
-export const HomePage = () => {
+export const HomePage = async () => {
     const title = "Velkommen"
     const p = Paragraph()
     p.innerText ="Velkommen til SGT.Prepper webshop"
-    return Layout(title, p)
+    return await Layout(title, p)
    
 }

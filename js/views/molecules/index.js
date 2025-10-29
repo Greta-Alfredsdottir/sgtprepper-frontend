@@ -10,21 +10,19 @@ export const HeaderView = () => {
 }
 
 export const NavBarView = arrNavItems => {
-    const element = document.createElement('nav')
-    element.className = 'border-2 border-blue bg-purple-200 rounded-lg'
-    const ul = Ul('flex')
+        const element = document.createElement('nav')
+        element.className = 'border-2 border-blue bg-purple-200 rounded-lg'
+        const ul = Ul('flex')
 
     arrNavItems.forEach(item => {
         const { href, title } = item
         const li = Li('p-2')
-        const item1 = Link(href, title, 'hover:text-white')
+        const item1 = Link(href, title, 'hover:text-blue-300')
         li.append(item1)
         ul.append(li)
 
     })
     
-
-
     element.append(ul)
     return element
 }
