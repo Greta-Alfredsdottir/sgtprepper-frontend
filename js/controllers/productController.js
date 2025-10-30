@@ -1,12 +1,14 @@
 
+import { getList } from "../models/productModel.js";
 import { Paragraph } from "../views/atoms/index.js"
 import { Layout } from "./layoutController.js"
 
-export const ProductPage = () => {
+export const ProductPage = async () => {
     // Object.fromEntries den retunerer et object. Location.search er en string
     const { category } = Object.fromEntries(new URLSearchParams(location.search));
-
-    console.log(category);
+    const data = await getList(category)
+    console.log(data);
+    
     
     
     const title = "Se vores produkter"
