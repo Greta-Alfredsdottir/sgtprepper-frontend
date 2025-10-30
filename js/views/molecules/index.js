@@ -15,14 +15,13 @@ export const NavBarView = arrNavItems => {
         const ul = Ul('flex')
 
     arrNavItems.forEach(item => {
-        const { href, title } = item
+        const { url, title } = item
         const li = Li('p-2')
-        const item1 = Link(href, title, 'hover:text-blue-300')
+        const item1 = Link(url, title, 'hover:text-blue-300')
         li.append(item1)
         ul.append(li)
 
     })
-    
     element.append(ul)
     return element
 }
