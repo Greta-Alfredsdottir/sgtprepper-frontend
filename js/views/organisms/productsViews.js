@@ -7,9 +7,7 @@ export const ProductListView = (products) => {
     const element = Fragment()
     element.innerText = 'ProduktListe'
 
-    const layout = Layout('Produkter', element)
-    
-    return layout
+    return element
 
 
 }
