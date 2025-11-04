@@ -10,7 +10,18 @@ export const ProductPage = async () => {
     
     //Bygger produkt liste
     const data = await getList(category) // laver kall til produkter og henter.
-    const html = ProductListView(data) //kalder mit view, 
+
+    const formattedProducts = data.map(item => ({
+        ...item,
+        stockText: item.stock ? 'På lager' : 'Forventes på lager indenfor 1 - 2 uger',
+        stockClass: item.stock ? 'text-green-600' : 'text-rød-600'
+    }))
+
+    //console.log(formattedProducts); // dette er for at se om det virker
+    
+
+    const html = ProductListView(formattedProducts) //kalder mit view, 
+    
     
     // Samler og returnerer side layoutet 
     const layout = Layout('produkter', html)
