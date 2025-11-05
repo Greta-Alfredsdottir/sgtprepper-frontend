@@ -1,46 +1,62 @@
-import { Heading, Li, Link, Ul } from "../atoms/index.js"
+import { cookieBanner } from "../../controllers/cookieBannerController.js"
+import { Div, Heading, Input, Label, Li, Link, Paragraph, Ul } from "../atoms/index.js"
 
 export const HeaderView = () => {
     const element = document.createElement('header')
-    // Her bruger vi Tailwind for at style
-    element.className = 'bg-slate-500 shadow-md border rounded-lg p-4 text-white-' 
-    const h1 = Heading('sgt. Prepper')
-    element.append(h1) 
+    element.className = 'bg-slate-700 p-4 text-white flex justify-between'
+    const h1 = Heading('Sgt. Prepper')
+    element.append(h1)
+
+    const p = Paragraph()
+    const a = Link('/index.htm#/login', 'Login', 'block bg-slate-400 px-3 py-2 rounded-lg border border-slate-800')
+    p.append(a)
+    element.append(p)
+
+    const cart = Paragraph()
+    const cartLink = Link('/index.htm#/cart', 'Se kurv')
+    cart.append(cartLink)
+    element.append(cart)
+
     return element
 }
 
 export const NavBarView = arrNavItems => {
-        const element = document.createElement('nav')
-        element.className = 'border-2 border-blue bg-purple-200 rounded-lg'
-        const ul = Ul('flex')
+    const element = document.createElement('nav')
+    element.className = 'bg-sky-950'
+    const ul = Ul('flex')
 
     arrNavItems.forEach(item => {
-        const { url, title } = item
-        const li = Li('p-2')
-        const item1 = Link(url, title, 'hover:text-blue-300')
+        const { url, title } = item // Destructure assignment - udskiller egenskaber fra objekt
+
+        const li = Li()
+        const item1 = Link(url, title, `block p-4 ${item.textColor}`)
         li.append(item1)
         ul.append(li)
-
     })
+
     element.append(ul)
     return element
 }
 
 export const MainView = (title, content) => {
-    
-    
     const element = document.createElement('main')
+    element.className = "p-4 min-h-60 container m-auto flex-grow"
     const h1 = Heading(title)
-    element.className = 'min-h-[400px]'
     element.append(h1, content)
+    element.append(cookieBanner())
     return element
 }
 
 export const FooterView = () => {
     const element = document.createElement('footer')
-    const image = document.createElement('img')
-    image.src = "./Assets/images/footer.png"
-    element.innerHTML = `&copy: TECHCOLLEGE 2025`
-    element.append(image)
+    element.className = "mt-auto h-[168px] p-4 bg-[url(./images/footer-bg.svg)] bg-center bg-no-repeat"
+    return element
+}
+
+export const FormGroup = (title, name, placeholder, type, value) => {
+    const element = Div('mb-4')
+    const label = Label(title, name)
+    const input = Input(name, placeholder, type, value)    
+    element.append(label, input)
     return element
 }

@@ -1,9 +1,10 @@
-import { HomePage } from './controllers/homeController.js';
+import { CartPage } from './controllers/cartController.js';
+import { LoginPage } from './controllers/loginController.js';
 import { ProductPage } from './controllers/productController.js';
 import { router } from './router/index.js';
 
-const ROOT = document.getElementById("container");
-
 router({
-  '/': () => ProductPage(), // forside
-  }, '#app');
+  '/': () => ProductPage(), // Forside
+  '/login': () => LoginPage(), // Login
+  '/cart': () => CartPage(), // Login
+}, '#app');

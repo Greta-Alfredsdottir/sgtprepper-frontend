@@ -4,7 +4,7 @@ import { Layout } from "./layoutController.js"
 export const HomePage = async () => {
     const title = "Velkommen"
     const p = Paragraph()
-    p.innerText ="Velkommen til SGT.Prepper webshop"
+    p.innerText ="Velkommen til Sgt. Prepper webshop"
     return await Layout(title, p)
    
 }

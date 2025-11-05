@@ -1,42 +1,77 @@
+import { price2Dkk } from "../../utils/index.js";
+import { Button, Div, Form, Fragment, Heading, Image, Input, Link, Paragraph } from "../atoms/index.js"
 
-import { Div, Fragment, Heading, Image, Paragraph } from "../atoms/index.js"
-
-
-
-export const ProductListView = (products) => {
+export const ProductListView = (products, category) => {
+    // Opretter fragment (blank html tag)
     const element = Fragment()
-    // Destructure assignment fra product object
+
     products.forEach(product => {
-        const { imageUrl, name, price, slug, stockText, stockClass,  teaser} = product
+        // Destructure assignment fra product object
+        const { imageUrl, name, price, slug, stockText, stockClass, teaser } = product
 
-        const div = Div('border flex justify-between') //div tag
+        // Opretter link box element
+        const linkBox = Link(`?category=${category}&product=${slug}`,'', 'block mb-4 p-4 border rounded flex justify-between')
+
+        // Image kolonne
+        const imgCol = Div('pr-4')        
         const img = Image(`http://localhost:4000${imageUrl}`, name, 'max-w-[200px]')
-        div.append(img)
+        img.loading = 'lazy'
+        imgCol.append(img)
 
-        const info = Div()
+        // Info kolonne
+        const infoCol = Div('flex-1 min-w-0')
         const h2 = Heading(name,2)
         const p = Paragraph()
-        p.innerHTML = teaser 
-        info.append(h2, p)
-        div.append(info)
+        p.innerHTML = teaser
+        infoCol.append(h2, p)
 
-        const cost = Div('text-right-border')
-        cost.innerText = price
+        // Pris og lager kolonne
+        const priceCol = Div('shrink-0 w-[200px] text-right')
+        const priceText = Paragraph('text-xl font-bold')
+        priceText.textContent = price2Dkk(price)
+        const stockTxt = Paragraph(stockClass)
+        stockTxt.textContent = stockText
+        priceCol.append(priceText, stockTxt)
 
-        const stockElm = Paragraph(stockClass)
-        stockElm.innerText = stockText
-        cost.append(stockElm)
+        // Tilføjer tre kolonner til link box
+        linkBox.append(imgCol, infoCol, priceCol)
 
-      
-        div.append(cost)
-        
-        element.append(div) // så append til elements
-        
+        // Tilføjer link box til fragment element
+        element.append(linkBox)
     });
-    console.log();
-    
-
     return element
 
+}
 
+export const ProductDetailsView = (product) => {
+    const { id, name, imageUrl, description, price } = product
+
+    const element = Div('flex justify-between gap-4 p-4 border rounded-lg')
+
+    const imageCol = Div('shrink-0 w-[300px]')
+    const img = Image(`http://localhost:4000${imageUrl}`, name, 'w-[90%] flex-shrink-0 rounded')
+    imageCol.append(img)
+
+    const infoCol = Div('flex-1 min-w-0')
+    const h3 = Heading(name,1,'font-bold mb-2')
+    infoCol.append(h3)
+
+    const p = Paragraph()
+    p.innerHTML = description
+    infoCol.append(p)
+
+    const form = Form('POST')
+    const productId = Input('productId','','hidden',id)
+    const quantity = Input('quantity', '', 'number', 1)
+    const button = Button('Læg i kurv', 'submit')
+
+    form.append(productId,quantity,button)
+    infoCol.append(form)
+
+    const priceCol = Div('text-2xl')
+    priceCol.innerHTML = price2Dkk(price)
+
+    element.append(imageCol, infoCol, priceCol)
+    return element
+    
 }
