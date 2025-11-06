@@ -49,7 +49,7 @@ export const MainView = (title, content) => {
 
 export const FooterView = () => {
     const element = document.createElement('footer')
-    element.className = "mt-auto h-[168px] p-4 bg-[url(./images/footer-bg.svg)] bg-center bg-no-repeat"
+    element.className = "mt-auto h-[168px] p-4 bg-[url(./Assets/images/footer-bg.svg)] bg-center bg-no-repeat"
     return element
 }
 
